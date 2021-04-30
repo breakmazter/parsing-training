@@ -44,4 +44,3 @@ tf_count_info_ = Table(
     Column('count_word_in_all_space', Integer),
     Column('tf_word_in_all_space', REAL),
 )
-
