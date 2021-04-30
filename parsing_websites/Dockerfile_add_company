@@ -1,0 +1,10 @@
+FROM python:3.9.2
+
+WORKDIR /add_company
+
+COPY add_company_worker.py /add_company/add_company_worker.py
+
+RUN pip install --upgrade pip
+RUN python -m pip install --no-cache-dir -U 'dramatiq[rabbitmq, redis, watch]'==1.10.0
+
+CMD ["dramatiq", "add_company_worker", "-Q", "add_company_second_implement"]
