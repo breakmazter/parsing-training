@@ -54,4 +54,4 @@ class TfCountInfo(Base):
     tf_word_in_all_space = Column(REAL)
 
     def __repr__(self):
-        return f"<TfCountInfo({self.external_id, self.created_at})>"
+        return f"<TfCountInfo({self.id, self.word, self.count_word_in_all_space})>"
