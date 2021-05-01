@@ -4,8 +4,7 @@ from dramatiq.results.backends import RedisBackend
 from dramatiq.brokers.rabbitmq import RabbitmqBroker
 
 from settings import *
-from actors_interface import should_retry
-from actors_interface import add_company
+from actors_interface import should_retry, add_company
 
 import requests
 from bs4 import BeautifulSoup

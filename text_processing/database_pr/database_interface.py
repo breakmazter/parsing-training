@@ -1,7 +1,5 @@
-from sqlalchemy import create_engine, Column, Integer, String, Table, MetaData, ForeignKey, REAL
-from settings import *
+from sqlalchemy import Column, Integer, String, Table, MetaData, ForeignKey, REAL
 
-engine = create_engine(POSTGRES_URL, echo=True, future=True)
 metadata = MetaData()
 
 devby_website_ = Table(
@@ -32,7 +30,7 @@ website_info_transf_ = Table(
     metadata,
     Column('id', Integer, primary_key=True),
     Column('company_id', ForeignKey('devby_website.id')),
-    Column('description_trans', String),
+    Column('description_2trans', String),
 )
 
 
@@ -44,7 +42,3 @@ tf_count_info_ = Table(
     Column('count_word_in_all_space', Integer),
     Column('tf_word_in_all_space', REAL),
 )
-
-
-
-

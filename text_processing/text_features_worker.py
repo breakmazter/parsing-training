@@ -2,7 +2,8 @@
 This worker catch text features(count word in all space and etc)
 """
 
-from database_interface import website_info_transf_, tf_count_info_, engine
+from database_pr.database_interface import website_info_transf_, tf_count_info_
+from database_pr.tables_crud import engine
 
 from sqlalchemy import insert, select
 
@@ -31,7 +32,7 @@ def word_tf_in_text(text: str) -> dict:
     return words_counts
 
 
-def conc2dict(d1, d2):
+def conc2dict(d1: dict, d2: dict) -> dict:
     d = d1
     for key, value in d2.items():
         if key in d1:

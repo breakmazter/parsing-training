@@ -24,14 +24,18 @@ if __name__ == "__main__":
     table = soup.find('table', {"id": "tablesort"})
     table_body = table.find('tbody')
 
-    for row in table_body.find_all('tr'):
+    data = table_body.find_all('tr')
+
+    for row, i in zip(data, range(len(data))):
         cells = row.findAll("td")
 
-        dic = {"name": cells[0]["data"],
-               "devby_link": MAIN_PAGE + cells[0].find("a")["href"],
-               "employees_amount": int(cells[2].string.strip()),
-               "careers_link": cells[3].find("a")["href"],
-               "mark": float(cells[1]["data"])}
+        dic = {
+            "id": i,
+            "name": cells[0]["data"],
+            "devby_link": MAIN_PAGE + cells[0].find("a")["href"],
+            "employees_amount": int(cells[2].string.strip()),
+            "careers_link": cells[3].find("a")["href"],
+            "mark": float(cells[1]["data"])}
 
         if dic["mark"] == 0:
             dic["mark"] = None
