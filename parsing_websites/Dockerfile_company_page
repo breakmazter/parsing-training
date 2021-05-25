@@ -1,0 +1,14 @@
+FROM python:3.9.2
+
+WORKDIR /company_page
+
+COPY company_page_worker.py /company_page/company_page_worker.py
+COPY settings.py /company_page/settings.py
+COPY requirements/company_page_requirements.txt /company_page/company_page_requirements.txt
+COPY actors_interface.py /company_page/actors_interface.py
+
+RUN pip install --upgrade pip
+RUN python -m pip install --no-cache-dir -U 'dramatiq[rabbitmq, redis, watch]'==1.10.0
+RUN python -m pip install --no-cache-dir -r company_page_requirements.txt
+
+CMD ["dramatiq", "company_page_worker", "-Q", "company_page_second_implement"]
