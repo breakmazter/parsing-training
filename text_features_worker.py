@@ -1,10 +1,6 @@
 """
 This worker catch text features(count word in all space and etc)
 """
-
-from database_pr.database_interface import website_info_transf_, tf_count_info_
-from database_pr.tables_crud import engine
-
 from sqlalchemy import insert, select
 
 
