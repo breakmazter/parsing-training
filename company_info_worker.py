@@ -1,10 +1,14 @@
+"""
+This worker transform(cleaning from garbage and etc) text and translate to english text
+"""
+
 import logging
 
 import dramatiq
 import requests
 from bs4 import BeautifulSoup
 
-from actors_interface import should_retry
+from actors_interface import should_retry, update_description
 from database_kit.connect import Session
 from database_kit.crud import is_industry, update_company, add_industry, add_company_industry
 from settings import HEADERS
@@ -74,6 +78,8 @@ def company_info(company_id: int, devby_link: str):
                 raise e
 
         update_company(company_id, company_data, db_session=session)
+
+        update_description.send(company_id, description)
 
         logging.info(f"{company_id} ---> update data!!!")
         session.commit()
